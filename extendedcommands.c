@@ -1048,14 +1048,14 @@ void show_nandroid_menu()
 
     char *other_sd = NULL;
     if (volume_for_path("/emmc") != NULL) {
-        other_sd = "/emmc";
+        other_sd = "/emmc/";
         list[6] = "backup to internal sdcard";
         list[7] = "restore from internal sdcard";
         list[8] = "advanced restore from internal sdcard";
         list[9] = "delete from internal sdcard";
     }
     else if (volume_for_path("/external_sd") != NULL) {
-        other_sd = "/external_sd";
+        other_sd = "/external_sd/";
         list[6] = "backup to external sdcard";
         list[7] = "restore from external sdcard";
         list[8] = "advanced restore from external sdcard";
