@@ -1248,11 +1248,11 @@ int can_partition(const char* volume) {
 
     int vol_len = strlen(vol->device);
     // do not allow partitioning of a device that isn't mmcblkX or mmcblkXp1
-    if (vol->device[vol_len - 2] == 'p' && vol->device[vol_len - 2] != '1') {
+    if (vol->device[vol_len - 2] == 'p' && vol->device[vol_len - 1] != '1') {
         LOGI("Can't partition unsafe device: %s\n", vol->device);
         return 0;
     }
-    
+
     if (strcmp(vol->fs_type, "vfat") != 0) {
         LOGI("Can't partition non-vfat: %s\n", vol->fs_type);
         return 0;
@@ -1281,13 +1281,13 @@ void show_advanced_menu()
     };
 
     if (!can_partition("/sdcard")) {
-        list[7] = NULL;
+        list[6] = NULL;
     }
     if (!can_partition("/external_sd")) {
-        list[8] = NULL;
+        list[] = NULL;
     }
     if (!can_partition("/emmc")) {
-        list[9] = NULL;
+        list[8] = NULL;
     }
 
     for (;;)
