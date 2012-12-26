@@ -900,15 +900,19 @@ void show_partition_menu()
         if (chosen_item == GO_BACK)
             break;
         if (chosen_item == (mountable_volumes+formatable_volumes)) {
-            if (!confirm_selection("format /data and /data/media (/sdcard)", confirm))
-                    continue;
+            if (!is_data_media()) {
+                show_mount_usb_storage_menu();
+            }
+            else {
+                if (!confirm_selection("format /data and /data/media (/sdcard)", confirm))
+                        continue;
                 handle_data_media_format(1);
                 ui_print("Formatting /data...\n");
                 if (0 != format_volume("/data"))
                     ui_print("Error formatting /data!\n");
                 else
                     ui_print("Done.\n");
-                handle_data_media_format(0);  
+                handle_data_media_format(0);
             }
         }
         else if (chosen_item < mountable_volumes) {
@@ -1295,7 +1299,7 @@ void show_advanced_menu()
         list[6] = NULL;
     }
     if (!can_partition("/external_sd")) {
-        list[] = NULL;
+        list[7] = NULL;
     }
     if (!can_partition("/emmc")) {
         list[8] = NULL;
